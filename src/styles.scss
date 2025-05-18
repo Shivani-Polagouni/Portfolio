@@ -1,0 +1,575 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth !important; /* Force smooth scrolling */
+  height: 100%;
+}
+
+html, body {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(125, 165, 235, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(138, 116, 210, 0.06) 0%, transparent 50%);
+  background-attachment: fixed;
+  transition: background-color var(--transition-medium), color var(--transition-medium);
+  font-size: 0.9rem;
+}
+
+/* Define CSS Variables at :root level for global access */
+:root {
+  /* Light blue to violet ombre color palette */
+  --primary-color: #7d87ff; /* Light blue-violet */
+  --secondary-color: #5e6ad9; /* Deeper blue */
+  --accent-color: #a5a2ff; /* Light violet accent */
+  --blue-accent: #7da5eb; /* Light blue accent */
+  --violet-accent: #9575d9; /* Violet accent */
+  --gradient-1: linear-gradient(135deg, #7da5eb 0%, #9575d9 100%); /* Blue to violet */
+  --gradient-2: linear-gradient(135deg, #5e6ad9 0%, #9575d9 100%); /* Deep blue to violet */
+  --gradient-3: linear-gradient(135deg, #7d87ff 0%, #7da5eb 100%); /* Blue-violet to blue */
+  --dark-color: #333333; /* Dark text */
+  --darker-color: #1a1a1a; /* Darker text */
+  --medium-dark: #4a4a4a; /* Medium text */
+  --card-bg: rgba(255, 253, 250, 0.7); /* Card background with transparency */
+  --light-color: #f8f5f0; /* Cream color */
+  --light-accent: #f1ede5; /* Slightly darker cream for contrast */
+  --medium-color: #666666; /* Medium text color */
+  --text-color: #333333; /* Main text */
+  --text-muted: #777777; /* Muted text */
+  --glass-effect: rgba(255, 255, 255, 0.2); /* Subtle glass effect */
+  --border-color: rgba(125, 135, 255, 0.2); /* Light blue-violet border */
+  --primary-light: rgba(125, 135, 255, 0.1); /* Light version of primary */
+  --primary-medium: rgba(125, 135, 255, 0.25); /* Medium version of primary */
+  --primary-dark: #6b75e0; /* Darker version of primary */
+  --secondary-dark: #4d58c4; /* Darker version of secondary */
+  --body-bg: #f8f5f0;
+  --section-bg: #f1ede5;
+  
+  /* Typography */
+  --body-font: 'Inter', sans-serif;
+  --heading-font: 'Plus Jakarta Sans', sans-serif;
+  --code-font: 'JetBrains Mono', monospace;
+  
+  /* Sizing */
+  --header-height: 65px; /* Updated to match the smaller header */
+  --container-width: 1200px;
+  --section-spacing: 120px;
+  --border-radius: 10px; /* Slightly larger border radius */
+  --border-radius-sm: 6px;
+  
+  /* Animation */
+  --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark theme */
+.dark-theme {
+  --body-bg: #1a1a1a;
+  --section-bg: #282828;
+  --card-bg: rgba(40, 40, 40, 0.8);
+  --dark-color: #f1f1f1;
+  --darker-color: #ffffff;
+  --medium-dark: #d1d1d1;
+  --light-color: #333333;
+  --light-accent: #282828;
+  --medium-color: #b4b4b4;
+  --text-color: #f1f1f1;
+  --text-muted: #a0a0a0;
+  --glass-effect: rgba(30, 30, 30, 0.3);
+  --border-color: rgba(125, 135, 255, 0.3);
+}
+
+/* Title and subtitle styles */
+.title {
+  font-family: var(--heading-font);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.subtitle {
+  font-family: var(--body-font);
+  color: var(--medium-color);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* Basic element styling */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+p, 
+.bio, 
+.section-subtitle, 
+.text-content,
+.project-summary,
+.about-bio p,
+.about-text p,
+.contact-subtitle,
+.contact-item p,
+.detail-value,
+.feature-item span,
+li,
+.card-text,
+.stack-btn,
+.tech-tags .tag,
+.tech-tag,
+.institution,
+.location,
+.duration,
+.cert-description,
+.profile-title,
+.stat-label,
+.workflow-badge,
+.detail-item p,
+.card-meta {
+  font-size: 0.9rem !important;
+  line-height: 1.5;
+}
+
+/* Slightly smaller elements that need to be differentiated */
+.small-text,
+.stat-label,
+.detail-label {
+  font-size: 0.8rem !important;
+}
+
+/* Slightly larger elements for emphasis */
+.bio {
+  font-size: 0.9rem !important;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+button {
+  font-family: var(--body-font);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Section styles */
+section {
+  padding: 5rem 0 4rem 0; /* Reduced padding */
+  position: relative;
+  min-height: 50vh;
+  scroll-margin-top: 85px; /* Fixed value instead of using variable */
+}
+
+/* Fix for Safari and Firefox */
+@supports (-webkit-touch-callout: none) {
+  section {
+    /* Safari specific value */
+    scroll-margin-top: 85px;
+  }
+}
+
+/* Additional fix for the projects section specifically */
+section#my-projects {
+  scroll-margin-top: 100px; /* Slightly higher value for projects section */
+}
+
+@supports (-webkit-touch-callout: none) {
+  section#my-projects {
+    scroll-margin-top: 100px;
+  }
+}
+
+section:nth-child(even) {
+  background-color: var(--section-bg);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+section .section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  color: var(--dark-color);
+  display: inline-block;
+  font-size: 2.5rem;
+}
+
+section .section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--gradient-1);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Card with subtle shadow */
+.github-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  transition: var(--transition-fast);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+}
+
+.github-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(125, 135, 255, 0.4);
+}
+
+/* Button styles - Refined */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7em 1.4em;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: var(--border-radius);
+  gap: 0.5em;
+  position: relative;
+  z-index: 1;
+  transition: var(--transition-fast);
+  background: var(--gradient-1);
+  color: white;
+  box-shadow: 0 4px 12px rgba(125, 135, 255, 0.2);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: var(--gradient-3);
+  box-shadow: 0 6px 16px rgba(125, 135, 255, 0.3);
+}
+
+.btn.btn-secondary {
+  color: var(--dark-color);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.btn.btn-secondary:hover {
+  background-color: rgba(125, 135, 255, 0.1);
+  border-color: var(--primary-color);
+}
+
+.btn.btn-blue {
+  background: var(--gradient-2);
+}
+
+.btn.btn-blue:hover {
+  background: var(--secondary-dark);
+}
+
+/* Tag style */
+.tag {
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  background-color: rgba(125, 135, 255, 0.15);
+  color: var(--secondary-color);
+  border-radius: 2em;
+  font-size: 0.8rem; /* Reduced from 0.85rem */
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Progress bar */
+.progress-container {
+  background-color: rgba(230, 225, 220, 0.5);
+  border-radius: 50px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background: var(--gradient-2);
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: 0 1px 3px rgba(125, 135, 255, 0.2);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--gradient-1);
+  border: 2px solid var(--light-color);
+  box-shadow: 0 0 0 4px rgba(125, 135, 255, 0.1);
+}
+
+/* Ensure app component takes full height */
+app-root {
+  display: block;
+  min-height: 100%;
+}
+
+/* Highlight text effect */
+.highlight-text {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
+  width: 100%;
+  height: 0.3em;
+  background: var(--gradient-1);
+  opacity: 0.3;
+  z-index: -1;
+  display: none; /* Remove the underline */
+}
+
+/* Section divider */
+.section-divider {
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-1);
+  opacity: 0.2;
+  margin: 2rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  :root {
+    --section-spacing: 60px;
+  }
+  
+  section {
+    padding: 4rem 0 3rem 0;
+  }
+  
+  h1 {
+    font-size: 2.3rem; /* Reduced size */
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 3.5rem 0 2.5rem 0;
+  }
+  
+  .container {
+    padding: 0 0.8rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+  }
+  
+  p, .bio, .bio-container p, .about-text p {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  section {
+    padding: 3rem 0 2rem 0;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Button hover effects */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: left 0.8s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* Link hover effect */
+a:not(.btn) {
+  position: relative;
+}
+
+a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+a:not(.btn):hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Icon animation for buttons and key points */
+@keyframes subtle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.highlight-icon i,
+.btn i {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
+
+/* Tag hover effect */
+.tag {
+  transition: var(--transition-fast);
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(125, 135, 255, 0.2);
+}
+
+/* Content text size adjustments */
+.section-subtitle {
+  font-size: 1rem; /* Reduced size */
+}
+
+.bio, .bio-container p, .about-text p {
+  font-size: 0.9rem; /* Smaller bio text */
+  line-height: 1.5;
+}
+
+/* Adjust heading sizes */
+h1 {
+  font-size: 2.3rem; /* Reduced size */
+}
+
+h2 {
+  font-size: 2rem; /* Reduced size */
+}
+
+h3 {
+  font-size: 1.5rem; /* Reduced size */
+}
+
+h4 {
+  font-size: 1.15rem; /* Reduced size */
+}

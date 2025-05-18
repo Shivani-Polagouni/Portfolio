@@ -1,0 +1,30 @@
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">Professional Skills</h2>
+    <p class="section-subtitle">Technical expertise and proficiencies I've developed throughout my career</p>
+    
+    <div class="skills-container">
+      @for (category of skillCategories; track category.name) {
+        <div class="skill-category github-card">
+          <div class="category-header" (click)="toggleCategory(category)">
+            <div class="category-icon">
+              <i class="{{ category.icon }}"></i>
+            </div>
+            <h3 class="category-title">{{ category.name }}</h3>
+            <div class="toggle-icon">
+              <i class="fas" [ngClass]="category.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+          </div>
+          
+          <div class="skills-list" [ngClass]="{'show': category.isOpen}">
+            @for (skill of category.skills; track skill) {
+              <div class="skill-chip">
+                <span>{{ skill }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

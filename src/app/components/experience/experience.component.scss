@@ -1,0 +1,521 @@
+@import '../../../styles.scss';
+
+.experience {
+  background-color: var(--light-color);
+  position: relative;
+  padding: 4rem 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(138, 116, 210, 0.03) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(182, 156, 255, 0.03) 0%, transparent 40%);
+  }
+}
+
+.section-title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(138, 116, 210, 0), rgba(138, 116, 210, 1) 50%, rgba(138, 116, 210, 0));
+  }
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.experience-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tabs-container {
+  display: flex;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.tabs-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(138, 116, 210, 0.1);
+    border-radius: 1px;
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: row;
+    min-width: initial;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    
+    &::after {
+      display: none;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgba(138, 116, 210, 0.1);
+    }
+  }
+}
+
+.tab-button {
+  padding: 1rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
+  border-left: 2px solid transparent;
+  margin-right: -2px;
+  
+  &:hover {
+    color: var(--primary-color);
+    background-color: rgba(138, 116, 210, 0.03);
+    transform: translateX(2px);
+  }
+  
+  &.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    transform: scale(1.05);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background-color: var(--primary-color);
+      border-radius: 1px;
+      z-index: 2;
+      animation: pulseHighlight 1.5s infinite alternate;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0.75rem 1.25rem;
+    white-space: nowrap;
+    border-left: none;
+    margin-right: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+    
+    &.active {
+      transform: scale(1.05) translateY(-2px);
+      
+      &::before {
+        right: auto;
+        top: auto;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@keyframes pulseHighlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(138, 116, 210, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(138, 116, 210, 0);
+  }
+}
+
+.tab-content {
+  flex: 1;
+  padding: 0 2rem;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.job-content {
+  transition: all 0.5s ease;
+  transform-origin: center left;
+  opacity: 0;
+  transform: perspective(1000px) rotateX(5deg) translateY(50px) scale(0.9);
+  filter: blur(5px);
+  
+  &.animate {
+    animation: popInExperience 0.8s cubic-bezier(0.17, 0.67, 0.33, 0.99) forwards;
+  }
+}
+
+@keyframes popInExperience {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(5deg) translateY(50px) scale(0.9);
+    filter: blur(5px);
+  }
+  40% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  70% {
+    transform: perspective(1000px) rotateX(-2deg) translateY(-10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--dark-color);
+  position: relative;
+  display: inline-block;
+  animation: slideInFromLeft 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s both;
+}
+
+.company-name {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  position: relative;
+  display: inline-block;
+  animation: slideInFromLeft 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s both;
+  
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.job-duration {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0.8rem;
+  background-color: rgba(138, 116, 210, 0.08);
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInFromRight 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s both;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  span {
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '\f017'; /* Clock icon */
+      font-family: 'Font Awesome 5 Free';
+      margin-right: 0.5rem;
+      font-weight: 400;
+      color: var(--primary-color);
+    }
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.job-description {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--medium-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+    animation: fadeUpStaggered 0.5s ease both;
+    animation-delay: calc(0.4s + var(--item-index, 0) * 0.1s);
+    
+    &:hover {
+      color: var(--dark-color);
+      transform: translateX(3px);
+    }
+    
+    &::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover::before {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@keyframes fadeUpStaggered {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.technologies-used {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  animation: fadeIn 0.5s ease 0.8s both;
+  
+  .tech-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background-color: rgba(138, 116, 210, 0.08);
+    color: var(--primary-color);
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation: popInTags 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
+    animation-delay: calc(0.8s + var(--tech-index, 0) * 0.05s);
+    
+    &::before {
+      content: '#';
+      margin-right: 0.25rem;
+      opacity: 0.7;
+    }
+    
+    &:hover {
+      background-color: rgba(138, 116, 210, 0.15);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+@keyframes popInTags {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.achievements-section {
+  background-color: rgba(138, 116, 210, 0.04);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 3px solid var(--primary-color);
+  
+  h4 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '\f091'; /* Trophy icon */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      color: var(--primary-color);
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  
+  li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--medium-color);
+    
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.responsibilities-section {
+  background-color: rgba(138, 116, 210, 0.02);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--primary-color);
+  
+  .responsibilities-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.5s ease 0.3s both;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+  }
+  
+  .job-description {
+    margin-bottom: 0;
+  }
+}
+
+.technologies-title {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  animation: fadeIn 0.5s ease 0.7s both;
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+  }
+}

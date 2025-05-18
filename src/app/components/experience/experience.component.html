@@ -1,0 +1,50 @@
+<section id="experience" class="experience">
+  <div class="container">
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-subtitle">My professional journey through the tech industry</p>
+    
+    <div class="experience-container">
+      <div class="tabs-container">
+        <div class="tabs-list">
+          @for (job of experiences; track job.company; let i = $index) {
+            <button 
+              class="tab-button" 
+              [class.active]="selectedTab === i"
+              (click)="selectTab(i)">
+              {{ job.company.split(' - ')[0] }}
+            </button>
+          }
+        </div>
+        
+        <div class="tab-content" *ngIf="experiences.length > 0">
+          <div class="job-content" [class.animate]="animationTriggered">
+            <h3 class="job-title">
+              {{ experiences[selectedTab].position }}
+            </h3>
+            <div class="company-name">{{ experiences[selectedTab].company }}</div>
+            
+            <p class="job-duration">
+              <span>{{ experiences[selectedTab].duration }}</span>
+            </p>
+            
+            <div class="responsibilities-section">
+              <h4 class="responsibilities-title">Key Responsibilities</h4>
+              <ul class="job-description">
+                @for (item of experiences[selectedTab].responsibilities; track item; let i = $index) {
+                  <li [style.--item-index]="i">{{ item }}</li>
+                }
+              </ul>
+            </div>
+            
+            <h4 class="technologies-title">Technologies Used</h4>
+            <div class="technologies-used">
+              @for (tech of experiences[selectedTab].technologies; track tech; let i = $index) {
+                <span class="tech-tag" [style.--tech-index]="i">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

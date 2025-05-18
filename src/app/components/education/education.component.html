@@ -1,0 +1,178 @@
+<section id="my-projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-subtitle">A collection of my professional and personal work</p>
+    
+    <div class="terminal-container">
+      @for (project of projects; track project.title) {
+        <div class="terminal-project">
+          <div class="project-header">
+            <div class="project-title-area">
+              <h3 class="project-title">{{project.title}}</h3>
+              <span class="project-date">{{project.duration}}</span>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <div class="project-info">
+              <p class="project-summary">{{project.description}}</p>
+              
+              <div class="terminal-command">$ cat features.txt</div>
+              <div class="terminal-output features-list">
+                @for (feature of project.features; track feature) {
+                  <div class="feature-item">
+                    <i class="fas fa-chevron-right"></i> {{feature}}
+                  </div>
+                }
+              </div>
+              
+              <div class="terminal-command">$ ls tech-stack/</div>
+              <div class="terminal-output tech-tags">
+                @for (tech of project.technologies; track tech) {
+                  <span class="tech-tag">{{tech}}</span>
+                }
+              </div>
+              
+              <div class="terminal-command">$ echo $COMPANY</div>
+              <div class="terminal-output company-info">
+                <span class="company-name">
+                  <i class="fas fa-building"></i> {{project.company}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <!-- Project Detail Modal -->
+  <div class="project-modal" *ngIf="selectedProject" [class.active]="selectedProject">
+    <div class="modal-backdrop" (click)="closeProject()"></div>
+    <div class="modal-content">
+      <button class="close-button" (click)="closeProject()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-header" *ngIf="selectedProject">
+        <h2 class="modal-title">{{selectedProject.title}}</h2>
+      </div>
+      <div class="modal-body" *ngIf="selectedProject">
+        <div class="project-details">
+          <div class="detail-item">
+            <span class="detail-label"><i class="fas fa-building"></i> Company:</span>
+            <span class="detail-value">{{selectedProject.company}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label"><i class="fas fa-calendar-alt"></i> Duration:</span>
+            <span class="detail-value">{{selectedProject.duration}}</span>
+          </div>
+        </div>
+        <div class="project-description">
+          <p>{{selectedProject.description}}</p>
+        </div>
+        
+        <div class="project-features">
+          <h3><i class="fas fa-star"></i> Key Features</h3>
+          <ul class="features-list">
+            @for (feature of selectedProject.features; track feature) {
+              <li class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span>{{feature}}</span>
+              </li>
+            }
+          </ul>
+        </div>
+        
+        <div class="project-technologies">
+          <h3>Technologies Used</h3>
+          <div class="tech-tags">
+            @for (tech of selectedProject.technologies; track tech) {
+              <span class="tech-tag">{{tech}}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="education-section">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <p class="section-subtitle">My academic journey and learning path</p>
+    
+    <div class="education-list">
+      @for (edu of educationItems; track edu.degree) {
+        <div class="education-card">
+          <div class="education-header">
+            <div class="degree-info">
+              <h3 class="degree-title"><i class="fas {{edu.icon}}"></i> {{edu.degree}}</h3>
+              <div class="institution">{{edu.institution}}, {{edu.location}}</div>
+              <div class="duration">{{edu.duration}} @if (edu.gpa) { <span class="gpa">| GPA: {{edu.gpa}}</span> }</div>
+            </div>
+          </div>
+          
+          <div class="education-content">
+            <p class="education-description">{{edu.description}}</p>
+            
+            <div class="education-details">
+              @if (edu.achievements && edu.achievements.length > 0) {
+                <div class="achievements-section">
+                  <h4><i class="fas fa-award"></i> Key Achievements</h4>
+                  <ul class="achievements-list">
+                    @for (achievement of edu.achievements; track achievement) {
+                      <li><i class="fas fa-check-circle"></i> {{achievement}}</li>
+                    }
+                  </ul>
+                </div>
+              }
+              
+              @if (edu.courses && edu.courses.length > 0) {
+                <div class="courses-section">
+                  <h4><i class="fas fa-book"></i> Relevant Courses</h4>
+                  <div class="courses-list">
+                    @for (course of edu.courses; track course) {
+                      <span class="course-tag">{{course}}</span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="certifications" class="certifications-section">
+  <div class="container">
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-subtitle">Professional credentials and specialized training</p>
+    
+    <div class="certifications-grid">
+      @for (cert of certifications; track cert.name) {
+        <div class="cert-card" [style.--cert-color]="cert.color">
+          <div class="cert-icon">
+            <i class="fas {{cert.icon}}"></i>
+          </div>
+          <div class="cert-content">
+            <h3 class="cert-name">{{cert.name}}</h3>
+            <div class="cert-info">
+              <span class="cert-institution"><i class="fas fa-building"></i> {{cert.institution}}</span>
+              <span class="cert-date"><i class="fas fa-calendar-alt"></i> {{cert.duration}}</span>
+            </div>
+            <p class="cert-description">{{cert.description}}</p>
+            <div class="cert-achievements">
+              <ul>
+                @for (achievement of cert.achievements; track achievement) {
+                  <li><i class="fas fa-check-circle"></i> {{achievement}}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

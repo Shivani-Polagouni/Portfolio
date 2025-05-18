@@ -1,0 +1,335 @@
+<header [ngClass]="{'scrolled': activeSection !== 'home', 'dark-theme': isDarkTheme}">
+  <div class="container">
+    <div class="logo">
+      <span class="logo-text">Shiv<span class="highlight">ani</span></span>
+    </div>
+    
+    <nav [ngClass]="{'open': menuOpen}">
+      <ul>
+        <li *ngFor="let section of sections">
+          <a href="#{{section.id}}" (click)="scrollToSection(section.id)" 
+             [ngClass]="{'active': activeSection === section.id}">
+             <i class="fas" 
+                [ngClass]="{
+                  'fa-home': section.id === 'home',
+                  'fa-user': section.id === 'about',
+                  'fa-briefcase': section.id === 'experience',
+                  'fa-graduation-cap': section.id === 'education',
+                  'fa-certificate': section.id === 'certifications',
+                  'fa-code-branch': section.id === 'my-projects',
+                  'fa-envelope': section.id === 'contact'
+                }"></i>
+             <span>{{section.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="action-buttons">
+      <button class="resume-btn" (click)="downloadResume()">
+        <i class="fas fa-download"></i> RESUME
+      </button>
+      
+      <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Toggle dark/light theme">
+        <i class="fas" [ngClass]="isDarkTheme ? 'fa-sun' : 'fa-moon'"></i>
+      </button>
+      
+      <button class="mobile-menu-toggle" (click)="toggleMenu()">
+        <i class="fas" [ngClass]="menuOpen ? 'fa-times' : 'fa-bars'"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section with modern introduction -->
+  <section id="home" class="home">
+    <div class="container">
+      <div class="content">
+        <div class="text">
+          <div class="badge">
+            <i class="fas fa-terminal"></i> .NET Developer & Full Stack Engineer
+          </div>
+          <h1>
+            Welcome, I'm <span class="highlight-text">Shivani Polagouni</span>
+            <span class="title">Fullstack/.NET Developer</span>
+            <span class="subtitle">Software Engineer & Research Assistant</span>
+          </h1>
+          
+          <div class="bio-container">
+            <p class="bio">Aspiring .NET Developer and Graduate Research Assistant with expertise in C#, .NET 7/8, Azure cloud services, and SQL. Skilled in backend development, RESTful APIs, and CI/CD automation, with a strong foundation in data analytics using Tableau. Passionate about developing scalable cloud-based solutions and optimizing application performance. Committed to building scalable solutions and using Agile methodologies to drive continuous improvement and deliver data-driven software solutions.</p>
+            
+            <div class="key-highlights">
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-code"></i>
+                </div>
+                <div class="highlight-text">
+                  <h4>Technical Excellence</h4>
+                  <p>Proficient in C#, .NET Core, ASP.NET, Azure and SQL Server</p>
+                </div>
+              </div>
+              
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-rocket"></i>
+                </div>
+                <div class="highlight-text">
+                  <h4>Industry Experience</h4>
+                  <p>4+ years of professional expertise in software development</p>
+                </div>
+              </div>
+              
+              <div class="highlight-item">
+                <div class="highlight-icon">
+                  <i class="fas fa-cloud"></i>
+                </div>
+                <div class="highlight-text">
+                  <h4>Cloud Solutions</h4>
+                  <p>Experience developing cloud-native applications with Azure services</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary" (click)="scrollToSection('contact')">
+              <i class="fas fa-paper-plane"></i> Contact
+            </a>
+            <a href="#my-projects" class="btn btn-primary" (click)="scrollToSection('my-projects')">
+              <i class="fas fa-code-branch"></i> View Projects
+            </a>
+          </div>
+          
+          <div class="workflow-status">
+            <div class="workflow-badge success">
+              <i class="fas fa-check-circle"></i> Available for opportunities
+            </div>
+            <div class="tech-tags">
+              <span class="tag">.NET 7/8</span>
+              <span class="tag">C#</span>
+              <span class="tag">Azure</span>
+              <span class="tag">SQL</span>
+              <span class="tag">RESTful APIs</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <div class="profile-card">
+            <div class="card-header">
+              <div class="bg-pattern"></div>
+            </div>
+            
+            <div class="profile-content">
+              <div class="profile-image">
+                <img src="/assets/shivani.jpg" alt="Shivani Polagouni">
+              </div>
+              
+              <div class="profile-details">
+                <h3>Shivani Polagouni</h3>
+                <p class="profile-title">.NET Developer</p>
+                
+                <div class="profile-stats">
+                  <div class="stat-item">
+                    <div class="stat-value">4+</div>
+                    <div class="stat-label">Years Experience</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-value">5+</div>
+                    <div class="stat-label">Projects</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-value">5+</div>
+                    <div class="stat-label">Technologies</div>
+                  </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="profile-links">
+                  <a href="mailto:polagounishivani&#64;gmail.com" class="profile-link">
+                    <i class="fas fa-envelope"></i>
+                  </a>
+                  <a href="https://github.com/" target="_blank" class="profile-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/shivanipolagouni" target="_blank" class="profile-link">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Get to know a bit about my background and what drives me as a developer</p>
+      
+      <div class="about-content pleasant">
+        <div class="about-image pleasant">
+          <div class="image-container pleasant">
+            <img [src]="profileImage" alt="Shivani Polagouni" class="about-photo pleasant" />
+          </div>
+        </div>
+        <div class="about-text pleasant">
+          <div class="about-bio pleasant">
+            <h3>Professional Summary</h3>
+            <p>
+              Aspiring .NET Developer and Graduate Research Assistant with expertise in C#, .NET 7/8, Azure cloud services, and SQL. Skilled in backend development, RESTful APIs, and CI/CD automation, with a strong foundation in data analytics using Tableau.
+            </p>
+            <p>
+              Passionate about developing scalable cloud-based solutions and optimizing application performance. Successfully managed applications while implementing best practices in software development. Committed to building scalable solutions and using Agile methodologies to drive continuous improvement and deliver data-driven software solutions.
+            </p>
+            <p>
+              Recently completed my Master's degree in Computer Science at Central Michigan University, where I also served as a Graduate Research Assistant developing data visualization solutions that improved student engagement metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tech-stack pleasant">
+        <h3>Technical Expertise</h3>
+        
+        <div class="stack-category">
+          <h4>Languages</h4>
+          <div class="stack-buttons pleasant">
+            <button class="stack-btn pleasant"><i class="fab fa-csharp"></i> C#</button>
+            <button class="stack-btn pleasant"><i class="fas fa-code"></i> C</button>
+            <button class="stack-btn pleasant"><i class="fab fa-java"></i> Java</button>
+            <button class="stack-btn pleasant"><i class="fab fa-python"></i> Python</button>
+            <button class="stack-btn pleasant"><i class="fab fa-html5"></i> HTML</button>
+            <button class="stack-btn pleasant"><i class="fab fa-css3-alt"></i> CSS</button>
+            <button class="stack-btn pleasant"><i class="fas fa-database"></i> MySQL</button>
+          </div>
+        </div>
+        
+        <div class="stack-category stack-category-separator">
+          <h4>Frameworks & Cloud</h4>
+          <div class="stack-buttons pleasant">
+            <button class="stack-btn pleasant"><i class="fab fa-microsoft"></i> .NET 7/8</button>
+            <button class="stack-btn pleasant"><i class="fas fa-server"></i> ASP.NET Core MVC & Web API</button>
+            <button class="stack-btn pleasant"><i class="fas fa-database"></i> Entity Framework Core</button>
+            <button class="stack-btn pleasant"><i class="fab fa-angular"></i> Angular</button>
+            <button class="stack-btn pleasant"><i class="fab fa-azure"></i> Azure App Services</button>
+            <button class="stack-btn pleasant"><i class="fas fa-bolt"></i> Azure Functions</button>
+            <button class="stack-btn pleasant"><i class="fas fa-database"></i> Azure SQL</button>
+            <button class="stack-btn pleasant"><i class="fab fa-github"></i> GitHub Actions</button>
+            <button class="stack-btn pleasant"><i class="fas fa-vial"></i> NUnit</button>
+            <button class="stack-btn pleasant"><i class="fas fa-paper-plane"></i> Postman</button>
+          </div>
+        </div>
+        
+        <div class="stack-category stack-category-separator">
+          <h4>Tools & Methodologies</h4>
+          <div class="stack-buttons pleasant">
+            <button class="stack-btn pleasant"><i class="fab fa-git-alt"></i> Git</button>
+            <button class="stack-btn pleasant"><i class="fab fa-docker"></i> Docker</button>
+            <button class="stack-btn pleasant"><i class="fas fa-file-code"></i> Swagger</button>
+            <button class="stack-btn pleasant"><i class="fab fa-microsoft"></i> Azure Repos</button>
+            <button class="stack-btn pleasant"><i class="fas fa-code-branch"></i> CI/CD Pipelines</button>
+            <button class="stack-btn pleasant"><i class="fas fa-tasks"></i> Agile/Scrum</button>
+            <button class="stack-btn pleasant"><i class="fas fa-cloud"></i> RESTful APIs</button>
+            <button class="stack-btn pleasant"><i class="fas fa-cubes"></i> Microservices</button>
+            <button class="stack-btn pleasant"><i class="fas fa-code"></i> Visual Studio</button>
+            <button class="stack-btn pleasant"><i class="fas fa-chart-bar"></i> Tableau</button>
+            <button class="stack-btn pleasant"><i class="fas fa-cogs"></i> SAP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <app-experience></app-experience>
+
+  <!-- Education Section with embedded Projects and Certifications -->
+  <app-education></app-education>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-card">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="contact-subtitle">
+          I'm currently open to new opportunities. Feel free to reach out if you'd like to discuss potential collaborations!
+        </p>
+        
+        <div class="contact-info">
+          <a href="mailto:polagounishivani@gmail.com" class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <p>polagounishivani&#64;gmail.com</p>
+          </a>
+          
+          <a href="tel:+19896217706" class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <p>989-621-7706</p>
+          </a>
+          
+          <a href="https://maps.google.com/?q=Mount+Pleasant,+Michigan+48858" target="_blank" class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <p>Mount Pleasant, Michigan 48858</p>
+          </a>
+        </div>
+        
+        <div class="resume-section">
+          <a href="/assets/resume.pdf" class="btn-resume" download>
+            <i class="fas fa-file-pdf"></i> View Resume
+          </a>
+        </div>
+        
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/shivanipolagouni" target="_blank" class="social-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/Shivani-Polagouni" target="_blank" class="social-link">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:polagounishivani&#64;gmail.com" class="social-link">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://g.dev/shivanipolagouni" target="_blank" class="social-link">
+            <i class="fab fa-google"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="logo">
+          <span class="logo-text">Shivani Polagouni</span>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#my-projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 Shivani Polagouni. All Rights Reserved.</p>
+        <p class="built-with">Built with <i class="fas fa-heart"></i> using Angular and .NET</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
