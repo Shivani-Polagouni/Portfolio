@@ -48,6 +48,9 @@ export class AppComponent implements OnInit {
     // First close the menu if it's open
     this.menuOpen = false;
     
+    // Check if we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
     // Use a more reliable way to find elements and scroll
     const scrollToElement = () => {
       const element = document.getElementById(sectionId);
@@ -84,6 +87,9 @@ export class AppComponent implements OnInit {
   
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
+    // Check if we're in browser environment
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    
     let currentSection = this.activeSection;
     
     // Detect visible sections
@@ -106,6 +112,9 @@ export class AppComponent implements OnInit {
   }
   
   downloadResume() {
+    // Check if we're in browser environment
+    if (typeof document === 'undefined') return;
+    
     const link = document.createElement('a');
     link.href = '/assets/Polagouni Shivani.pdf';
     link.download = 'Polagouni_Shivani_Resume.pdf';
@@ -115,24 +124,32 @@ export class AppComponent implements OnInit {
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
     document.body.classList.toggle('dark-theme', this.isDarkTheme);
-    localStorage.setItem('isDarkTheme', this.isDarkTheme.toString());
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('isDarkTheme', this.isDarkTheme.toString());
+    }
   }
   
   private loadThemePreference() {
-    const savedTheme = localStorage.getItem('isDarkTheme');
-    if (savedTheme) {
-      this.isDarkTheme = savedTheme === 'true';
-      document.body.classList.toggle('dark-theme', this.isDarkTheme);
-    } else {
-      // Optional: Check for system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.isDarkTheme = prefersDark;
-      document.body.classList.toggle('dark-theme', this.isDarkTheme);
+    // Check if we're in browser environment
+    if (typeof localStorage !== 'undefined' && typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('isDarkTheme');
+      if (savedTheme) {
+        this.isDarkTheme = savedTheme === 'true';
+        document.body.classList.toggle('dark-theme', this.isDarkTheme);
+      } else {
+        // Optional: Check for system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        this.isDarkTheme = prefersDark;
+        document.body.classList.toggle('dark-theme', this.isDarkTheme);
+      }
     }
   }
   
   // Handle URL hash for direct navigation
   private handleUrlHash() {
+    // Check if window is available (browser environment)
+    if (typeof window === 'undefined') return;
+    
     // Wait for everything to load properly
     setTimeout(() => {
       const hash = window.location.hash;

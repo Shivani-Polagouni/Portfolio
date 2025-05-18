@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist/portfolio/browser"
+
+[functions]
+  directory = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/angular-runtime"
+
+[dev]
+  command = "npm run start"
+  targetPort = 4200
+  port = 8888
+  publish = "dist/portfolio/browser"
+  autoLaunch = true 
